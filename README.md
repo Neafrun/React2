@@ -45,25 +45,27 @@ Node.js와 npm은 React 개발의 필수 기반
 2. 라우터 기본 설정
 
     라우터를 사용하려면 최상위 컴포넌트를 BrowserRouter로 감싸야 한다.
-// main.jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
 
-    ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+        // main.jsx
+        import React from "react";
+        import ReactDOM from "react-dom/client";
+        import { BrowserRouter } from "react-router-dom";
+        import App from "./App";
+
+        ReactDOM.createRoot(document.getElementById("root")).render(
+        <BrowserRouter>
+        <App />
+        </BrowserRouter>
+        );
 
 3. 라우팅 구현하기
 
 페이지 이동을 위해 Routes와 Route 컴포넌트를 사용한다.
-    App.jsx
-    import { Routes, Route, Link } from "react-router-dom";
-    import Home from "./pages/Home";
-    import About from "./pages/About";
+
+        App.jsx
+        import { Routes, Route, Link } from "react-router-dom";
+        import Home from "./pages/Home";
+        import About from "./pages/About";
 
 4. 주요 기능
 	•	<Link>
@@ -141,46 +143,47 @@ children을 사용해서 각 페이지 내용을 끼워 넣는다.
 
 4. 라우터와 함께 사용하기
 
-    <!-- // App.jsx
-    import { Routes, Route } from "react-router-dom";
-    import Layout from "./components/Layout";
-    import Home from "./pages/Home";
-    import About from "./pages/About";
+        // App.jsx
+        import { Routes, Route } from "react-router-dom";
+        import Layout from "./components/Layout";
+        import Home from "./pages/Home";
+        import About from "./pages/About";
 
-    function App() {
-        return (
-            <Routes>
-                {/* Layout을 공통으로 적용 */}
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<About />} />
-            </Route>
-        </Routes>
-    );
-    } -->
+        function App() {
+            return (
+                <Routes>
+                    { Layout을 공통으로 적용 }
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Home />} />
+                        <Route path="about" element={<About />} 
+                        />
+                    </Route>
+                </Routes>
+            );
+        }
 
-    export default App;
+        export default App;
 
 5. Outlet 사용 예시
-<!-- 
-    // Layout.jsx
-    import { Outlet } from "react-router-dom";
-    import Header from "./Header";
-    import Footer from "./Footer";
 
-    function Layout() {
-        return (
-            <div>
-                <Header />
-                <main>
-                    <Outlet /> {/* 라우터에서 지정된 페이지가 들어옴 */}
-                </main>
-            <Footer />
-        </div>
-        );
-    }
+        // Layout.jsx
+        import { Outlet } from "react-router-dom";
+        import Header from "./Header";
+        import Footer from "./Footer";
 
-    export default Layout; -->
+        function Layout() {
+            return (
+                <div>
+                    <Header />
+                    <main>
+                        <Outlet /> { 라우터에서 지정된 페이지가 들어옴 }
+                    </main>
+                <Footer />
+            </div>
+            );
+        }
+
+        export default Layout;
 
 6. 스타일링 방법
 	•	CSS 모듈: Layout.module.css 파일로 분리
