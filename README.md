@@ -112,3 +112,81 @@ URL 파라미터를 가져올 수 있다. (예: /user/:id)
 	    •	switch는 브랜치 전용 명령어라서 더 직관적이고 안전함
 	    •	최신 Git 환경에서는 switch 사용을 권장
 
+
+3. layout
+웹사이트는 보통 공통적으로 반복되는 영역이 있다.
+예를 들어, 헤더(Header), 사이드바(Sidebar), 푸터(Footer) 같은 것들이다.
+React에서는 이 공통 구조를 “레이아웃 컴포넌트”로 만들고, 각 페이지를 그 안에 넣어서 재사용할 수 있다.
+
+        Header
+        └─ Main Content (변경되는 부분)
+        Footer
+
+        import Header from "./Header";
+        import Footer from "./Footer";
+
+        function Layout({ children }) {
+           return (
+              <div>
+                <Header />
+                <main style={{ minHeight: "80vh" }}>
+                {children} {/* 페이지별 내용이 들어가는 자리 */}
+            </main>
+            <Footer />
+            </div>
+          );
+        }
+
+children을 사용해서 각 페이지 내용을 끼워 넣는다.
+
+4. 라우터와 함께 사용하기
+
+    <!-- // App.jsx
+    import { Routes, Route } from "react-router-dom";
+    import Layout from "./components/Layout";
+    import Home from "./pages/Home";
+    import About from "./pages/About";
+
+    function App() {
+        return (
+            <Routes>
+                {/* Layout을 공통으로 적용 */}
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<About />} />
+            </Route>
+        </Routes>
+    );
+    } -->
+
+    export default App;
+
+5. Outlet 사용 예시
+<!-- 
+    // Layout.jsx
+    import { Outlet } from "react-router-dom";
+    import Header from "./Header";
+    import Footer from "./Footer";
+
+    function Layout() {
+        return (
+            <div>
+                <Header />
+                <main>
+                    <Outlet /> {/* 라우터에서 지정된 페이지가 들어옴 */}
+                </main>
+            <Footer />
+        </div>
+        );
+    }
+
+    export default Layout; -->
+
+6. 스타일링 방법
+	•	CSS 모듈: Layout.module.css 파일로 분리
+	•	Styled-components: JS 안에서 스타일 정의
+	•	Tailwind CSS: 클래스명으로 빠르게 레이아웃 잡기
+
+    •	레이아웃은 공통 구조(헤더, 푸터, 사이드바)를 관리하는 컴포넌트
+	•	children 또는 Outlet을 활용해서 페이지를 끼워 넣는다
+	•	반복되는 코드를 줄이고, 유지보수를 쉽게 만든다
