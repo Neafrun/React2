@@ -88,7 +88,7 @@ URL 파라미터를 가져올 수 있다. (예: /user/:id)
 
 ## 4주자 9월17일
 
-1. git checkout
+### git checkout
 
 과거에는 checkout 하나로 브랜치 이동, 브랜치 생성, 커밋 이동까지 모두 처리했다.
 하지만 기능이 많다 보니 초보자에게 혼란을 주었다.
@@ -102,7 +102,7 @@ URL 파라미터를 가져올 수 있다. (예: /user/:id)
     특정 커밋으로 이동
     git checkout <commit-id>
 
- 2. git switch
+ ### git switch
 
     브랜치 이동
     git switch feature/login
@@ -115,7 +115,7 @@ URL 파라미터를 가져올 수 있다. (예: /user/:id)
 	    •	최신 Git 환경에서는 switch 사용을 권장
 
 
-3. layout
+### layout
 웹사이트는 보통 공통적으로 반복되는 영역이 있다.
 예를 들어, 헤더(Header), 사이드바(Sidebar), 푸터(Footer) 같은 것들이다.
 React에서는 이 공통 구조를 “레이아웃 컴포넌트”로 만들고, 각 페이지를 그 안에 넣어서 재사용할 수 있다.
@@ -164,7 +164,7 @@ children을 사용해서 각 페이지 내용을 끼워 넣는다.
 
         export default App;
 
-5. Outlet 사용 예시
+### Outlet 사용 예시
 
         // Layout.jsx
         import { Outlet } from "react-router-dom";
@@ -185,7 +185,7 @@ children을 사용해서 각 페이지 내용을 끼워 넣는다.
 
         export default Layout;
 
-6. 스타일링 방법
+###. 스타일링 방법
 	•	CSS 모듈: Layout.module.css 파일로 분리
 	•	Styled-components: JS 안에서 스타일 정의
 	•	Tailwind CSS: 클래스명으로 빠르게 레이아웃 잡기
@@ -196,8 +196,9 @@ children을 사용해서 각 페이지 내용을 끼워 넣는다.
 
 ## 5주자 9월24일
 
-Next.js searchParams 이해하기 및 동적 렌더링
-1. searchParams란 무엇인가?
+### Next.js searchParams 이해하기 및 동적 렌더링
+
+### searchParams란 무엇인가?
 searchParams는 Next.js App Router에서 URL의 쿼리 문자열(Query String)을 컴포넌트 내에서 접근하고 읽을 수 있도록 제공되는 객체입니다.
 역할: 클라이언트가 요청한 URL에서 특정 데이터(검색 조건, 페이지 번호 등)를 추출하는 데 사용됩니다.
 
@@ -205,15 +206,15 @@ searchParams는 Next.js App Router에서 URL의 쿼리 문자열(Query String)�
 예시: https://example.com/products? category=shoes&page=2
 여기서 category=shoes와 page=2가 searchParams를 통해 접근할 수 있는 검색 파라미터(Search Parameters)입니다.
 
-2. searchParams가 동적 렌더링(Dynamic Rendering)을 유발하는 이유
+### searchParams가 동적 렌더링(Dynamic Rendering)을 유발하는 이유
 Next.js는 페이지를 크게 정적(Static) 또는 동적(Dynamic)으로 렌더링합니다. searchParams를 사용하면 해당 페이지는 자동으로 동적 렌더링 모드로 전환됩니다.
 
-2.1. 렌더링 방식의 구분
+### 렌더링 방식의 구분
 방식,정적 렌더링 (Static Rendering),동적 렌더링 (Dynamic Rendering)
 생성 시점,빌드(Build) 시점에 미리 HTML 생성,사용자의 요청(Request) 시점에 HTML 생성
 조건,페이지 내용이 빌드 시점에 확정 가능해야 함,페이지 내용이 요청 시점의 데이터에 의존해야 함
 
-2.2. 동적 렌더링으로 전환되는 원리
+### 동적 렌더링으로 전환되는 원리
 빌드 시점의 불확실성: searchParams에 담기는 쿼리 문자열(?keyword=nextjs 또는 ?keyword=react 등)의 값은 개발자가 빌드를 수행하는 시점에는 알 수 없습니다. 이 값은 오로지 사용자가 어떤 URL로 접속했는지에 따라 결정됩니다.
 요청 시점 데이터 의존: searchParams는 오직 요청이 서버에 도달했을 때만 값을 확정할 수 있는 요청 시점(Request-time) 데이터입니다.
 자동 동적 처리: Next.js는 페이지의 렌더링 결과가 요청 시점의 데이터(searchParams, headers, cookies 등)에 따라 달라져야 할 경우, 안정적인 데이터 반영을 위해 해당 페이지를 정적으로 미리 생성할 수 없다고 판단합니다.
